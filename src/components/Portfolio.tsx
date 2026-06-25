@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { useGSAP, revealOnScroll } from '../hooks/useGSAP';
 import SectionHeading from './SectionHeading';
 
@@ -7,7 +7,12 @@ interface Project {
   description: string;
   tags: string[];
   url: string;
-  /** Swap this for a real screenshot path in /public when available. */
+  /**
+   * Real screenshot of the live site (preferred). Drop a PNG/JPG/WEBP into
+   * /public/images and point this at it, e.g. '/images/boatyard.png'.
+   */
+  screenshot?: string;
+  /** Stylised SVG fallback shown until a real screenshot is added. */
   image?: string;
 }
 
@@ -18,19 +23,35 @@ const projects: Project[] = [
       'A premium wellness experience with two locations in Wicklow Town and Arklow. Built on Astro with GSAP animations, Sanity CMS, Buttondown newsletter integration, and Wundabook booking system.',
     tags: ['Web Design', 'Booking Integration', 'CMS', 'Animations'],
     url: 'https://theboatyardsauna.io',
+    screenshot: '/images/boatyard.png',
     image: '/images/boatyard-preview.svg',
   },
 ];
 
-/** Dark mockup frame used as a placeholder until a real screenshot is added. */
-function MockupFrame({ image, name }: { image?: string; name: string }) {
-  if (image) {
+/**
+ * Shows the real screenshot when present; if it's missing/fails to load, falls
+ * back to the stylised SVG mockup, then to a generated frame.
+ */
+function MockupFrame({
+  screenshot,
+  image,
+  name,
+}: {
+  screenshot?: string;
+  image?: string;
+  name: string;
+}) {
+  const [failed, setFailed] = useState(false);
+  const src = !failed && screenshot ? screenshot : image;
+
+  if (src) {
     return (
       <img
-        src={image}
+        src={src}
         alt={`${name} website`}
         loading="lazy"
-        className="h-full w-full object-cover"
+        onError={() => setFailed(true)}
+        className="h-full w-full object-cover object-top"
       />
     );
   }
@@ -107,7 +128,11 @@ export default function Portfolio() {
             >
               <div className="relative aspect-[16/10] overflow-hidden">
                 <div className="h-full w-full transition-transform duration-700 group-hover:scale-[1.03]">
-                  <MockupFrame image={p.image} name={p.name} />
+                  <MockupFrame
+                    screenshot={p.screenshot}
+                    image={p.image}
+                    name={p.name}
+                  />
                 </div>
                 {/* Hover overlay */}
                 <div className="absolute inset-0 flex items-center justify-center bg-background/70 opacity-0 backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-100">
