@@ -65,7 +65,7 @@ export default function Testimonials() {
             >
               <span
                 aria-hidden
-                className="font-serif text-6xl leading-none text-emerald"
+                className="text-gradient-color font-serif text-7xl leading-none"
               >
                 &ldquo;
               </span>

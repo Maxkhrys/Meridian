@@ -91,9 +91,23 @@ export default function Pricing() {
     <section
       id="pricing"
       ref={root}
-      className="relative bg-surface/30 py-28 md:py-36"
+      className="relative overflow-hidden bg-surface/30 py-28 md:py-36"
     >
-      <div className="container-px">
+      <div
+        className="pointer-events-none absolute -right-20 top-10 h-[420px] w-[420px] rounded-full blur-3xl"
+        style={{
+          background:
+            'radial-gradient(circle, rgba(34,211,238,0.16), transparent 70%)',
+        }}
+      />
+      <div
+        className="pointer-events-none absolute -left-20 bottom-0 h-[380px] w-[380px] rounded-full blur-3xl"
+        style={{
+          background:
+            'radial-gradient(circle, rgba(16,185,129,0.14), transparent 70%)',
+        }}
+      />
+      <div className="container-px relative">
         <SectionHeading
           eyebrow="Pricing"
           title="Simple, Transparent Pricing"

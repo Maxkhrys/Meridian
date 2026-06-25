@@ -16,6 +16,17 @@ export default {
           glow: '#5eead4',
           pale: '#a7f3d0',
         },
+        teal: {
+          DEFAULT: '#2dd4bf',
+          glow: '#5eead4',
+        },
+        cyan: {
+          DEFAULT: '#22d3ee',
+          glow: '#67e8f9',
+        },
+        violet: {
+          DEFAULT: '#8b5cf6',
+        },
         text: {
           primary: '#f5f5f5',
           secondary: '#888888',

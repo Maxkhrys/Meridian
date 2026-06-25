@@ -6,38 +6,29 @@ const services = [
   {
     title: 'Web Design & Development',
     desc: 'Custom-built websites using modern technology. Fast, responsive, and designed to convert visitors into customers.',
-    icon: (
-      <path d="M3 5h18v14H3zM3 9h18M7 13h6" strokeWidth="1.5" />
-    ),
+    accent: 'border-emerald/30 bg-emerald/10 text-emerald-glow',
+    icon: <path d="M3 5h18v14H3zM3 9h18M7 13h6" strokeWidth="1.5" />,
   },
   {
     title: 'Booking System Integration',
     desc: 'We integrate and style booking systems to match your brand — so your customers get a seamless experience from first click to confirmed appointment.',
+    accent: 'border-teal/30 bg-teal/10 text-teal',
     icon: (
-      <path
-        d="M7 3v3M17 3v3M4 8h16v12H4zM8 13h3v3H8z"
-        strokeWidth="1.5"
-      />
+      <path d="M7 3v3M17 3v3M4 8h16v12H4zM8 13h3v3H8z" strokeWidth="1.5" />
     ),
   },
   {
     title: 'Content Management',
     desc: 'Your site, your control. We set up a simple CMS so you can update your content, prices, and photos without touching a line of code.',
-    icon: (
-      <path
-        d="M5 4h14v16H5zM9 9h6M9 13h6M9 17h3"
-        strokeWidth="1.5"
-      />
-    ),
+    accent: 'border-cyan/30 bg-cyan/10 text-cyan',
+    icon: <path d="M5 4h14v16H5zM9 9h6M9 13h6M9 17h3" strokeWidth="1.5" />,
   },
   {
     title: 'Ongoing Support & Maintenance',
     desc: 'Monthly retainer plans that keep your site fast, secure, and up to date — with a real person to call when you need something changed.',
+    accent: 'border-violet/30 bg-violet/10 text-violet',
     icon: (
-      <path
-        d="M12 4a8 8 0 1 0 8 8M12 8v4l3 2M16 4h4v4"
-        strokeWidth="1.5"
-      />
+      <path d="M12 4a8 8 0 1 0 8 8M12 8v4l3 2M16 4h4v4" strokeWidth="1.5" />
     ),
   },
 ];
@@ -78,7 +69,9 @@ export default function Services() {
               key={s.title}
               className="service-card card card-hover group p-8"
             >
-              <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-xl border border-emerald/20 bg-emerald/5 text-emerald transition-colors group-hover:bg-emerald/10">
+              <div
+                className={`mb-6 flex h-12 w-12 items-center justify-center rounded-xl border transition-transform duration-300 group-hover:scale-110 ${s.accent}`}
+              >
                 <svg
                   viewBox="0 0 24 24"
                   fill="none"

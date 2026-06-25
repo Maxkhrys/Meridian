@@ -8,11 +8,22 @@ interface Stat {
   display?: string; // for non-numeric stats
 }
 
-const stats: Stat[] = [
-  { value: 1, suffix: '+', label: 'Sites Delivered' },
-  { value: 2, suffix: ' Weeks', label: 'Average Turnaround' },
-  { value: 100, suffix: '%', label: 'Client Retention' },
-  { value: 0, suffix: '', label: 'Based In', display: 'Wicklow, Ireland 🇮🇪' },
+const stats: (Stat & { color: string })[] = [
+  { value: 1, suffix: '+', label: 'Sites Delivered', color: 'text-emerald-glow' },
+  {
+    value: 2,
+    suffix: ' Weeks',
+    label: 'Average Turnaround',
+    color: 'text-teal',
+  },
+  { value: 100, suffix: '%', label: 'Client Retention', color: 'text-cyan' },
+  {
+    value: 0,
+    suffix: '',
+    label: 'Based In',
+    display: 'Wicklow, Ireland 🇮🇪',
+    color: 'text-emerald-glow',
+  },
 ];
 
 export default function About() {
@@ -61,7 +72,7 @@ export default function About() {
           {/* Left text */}
           <div className="about-text">
             <p className="eyebrow mb-4">About</p>
-            <h2 className="text-3xl font-bold tracking-tight text-text-primary sm:text-4xl md:text-[48px] md:leading-tight">
+            <h2 className="text-gradient-color text-3xl font-bold tracking-tight sm:text-4xl md:text-[48px] md:leading-tight">
               Built Different.
             </h2>
             <p className="mt-6 text-lg leading-relaxed text-text-secondary">
@@ -78,7 +89,13 @@ export default function About() {
 
           {/* Right stats card */}
           <div className="relative">
-            <div className="pointer-events-none absolute -inset-6 rounded-3xl bg-emerald-glow blur-2xl" />
+            <div
+              className="pointer-events-none absolute -inset-8 rounded-[2rem] blur-3xl"
+              style={{
+                background:
+                  'radial-gradient(circle at 30% 30%, rgba(16,185,129,0.22), transparent 60%), radial-gradient(circle at 80% 70%, rgba(34,211,238,0.18), transparent 60%)',
+              }}
+            />
             <div className="stats-card relative grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-border bg-border">
               {stats.map((s) => (
                 <div
@@ -91,7 +108,7 @@ export default function About() {
                     </div>
                   ) : (
                     <div
-                      className="stat-number text-4xl font-bold text-emerald md:text-5xl"
+                      className={`stat-number text-4xl font-bold md:text-5xl ${s.color}`}
                       data-value={s.value}
                       data-suffix={s.suffix}
                     >

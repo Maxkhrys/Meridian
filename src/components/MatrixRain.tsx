@@ -37,9 +37,22 @@ export default function MatrixRain({
     let height = 0;
     let columns = 0;
     let drops: number[] = [];
+    // Bigger glyphs (fewer columns) + lower frame-rate on phones keeps the
+    // canvas cheap so scrolling stays smooth.
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+    const size = isMobile ? Math.round(fontSize * 1.5) : fontSize;
+    const interval = 1000 / (isMobile ? 14 : 22);
 
+    // Occasional cyan / teal heads add colour to the rain.
+    const heads = ['#a7f3d0', '#67e8f9', '#5eead4', '#34d399'];
+    const trails = [
+      'rgba(16, 185, 129, 0.8)',
+      'rgba(45, 212, 191, 0.65)',
+      'rgba(34, 211, 238, 0.55)',
+    ];
     const random = (arr: string) =>
       arr[Math.floor(Math.random() * arr.length)];
+    const pick = <T,>(arr: T[]) => arr[Math.floor(Math.random() * arr.length)];
 
     const setup = () => {
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -48,11 +61,11 @@ export default function MatrixRain({
       canvas.width = Math.max(1, Math.floor(width * dpr));
       canvas.height = Math.max(1, Math.floor(height * dpr));
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      columns = Math.max(1, Math.floor(width / fontSize));
+      columns = Math.max(1, Math.floor(width / size));
       drops = Array.from({ length: columns }, () =>
-        Math.floor((Math.random() * -height) / fontSize)
+        Math.floor((Math.random() * -height) / size)
       );
-      ctx.fillStyle = '#080808';
+      ctx.fillStyle = '#060807';
       ctx.fillRect(0, 0, width, height);
     };
 
@@ -60,7 +73,7 @@ export default function MatrixRain({
 
     let raf = 0;
     let last = 0;
-    const interval = 1000 / 22; // stepped, classic + performant
+    let running = false;
 
     const draw = (time: number) => {
       raf = requestAnimationFrame(draw);
@@ -68,24 +81,23 @@ export default function MatrixRain({
       last = time;
 
       // Translucent fade creates the trailing tails.
-      ctx.fillStyle = 'rgba(8, 8, 8, 0.09)';
+      ctx.fillStyle = 'rgba(6, 8, 7, 0.09)';
       ctx.fillRect(0, 0, width, height);
 
-      ctx.font = `${fontSize}px "JetBrains Mono", monospace`;
+      ctx.font = `${size}px "JetBrains Mono", monospace`;
       ctx.textBaseline = 'top';
 
       for (let i = 0; i < columns; i++) {
-        const x = i * fontSize;
-        const y = drops[i] * fontSize;
+        const x = i * size;
+        const y = drops[i] * size;
         const char = random(GLYPHS);
 
         if (Math.random() > 0.94) {
-          // Bright leading head
-          ctx.fillStyle = '#a7f3d0';
-          ctx.shadowColor = 'rgba(94, 234, 212, 0.9)';
-          ctx.shadowBlur = 8;
+          ctx.fillStyle = pick(heads);
+          ctx.shadowColor = ctx.fillStyle;
+          ctx.shadowBlur = isMobile ? 0 : 8;
         } else {
-          ctx.fillStyle = 'rgba(16, 185, 129, 0.8)';
+          ctx.fillStyle = pick(trails);
           ctx.shadowBlur = 0;
         }
         ctx.fillText(char, x, y);
@@ -98,9 +110,22 @@ export default function MatrixRain({
       ctx.shadowBlur = 0;
     };
 
-    if (!reduce) {
+    const start = () => {
+      if (running || reduce) return;
+      running = true;
       raf = requestAnimationFrame(draw);
-    }
+    };
+    const stop = () => {
+      running = false;
+      cancelAnimationFrame(raf);
+    };
+
+    // Only animate while the canvas is on screen.
+    const io = new IntersectionObserver(
+      ([entry]) => (entry.isIntersecting ? start() : stop()),
+      { threshold: 0 }
+    );
+    io.observe(canvas);
 
     let resizeTimer = 0;
     const onResize = () => {
@@ -110,7 +135,8 @@ export default function MatrixRain({
     window.addEventListener('resize', onResize);
 
     return () => {
-      cancelAnimationFrame(raf);
+      stop();
+      io.disconnect();
       window.removeEventListener('resize', onResize);
       window.clearTimeout(resizeTimer);
     };

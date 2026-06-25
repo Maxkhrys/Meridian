@@ -1,4 +1,5 @@
 import { useLenis } from './hooks/useLenis';
+import AuroraBackground from './components/AuroraBackground';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Services from './components/Services';
@@ -14,6 +15,7 @@ function App() {
 
   return (
     <>
+      <AuroraBackground />
       <Navbar />
       <main>
         <Hero />

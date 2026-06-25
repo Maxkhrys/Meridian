@@ -10,10 +10,12 @@
   html {
     scroll-behavior: auto; /* Lenis handles smooth scrolling */
     -webkit-text-size-adjust: 100%;
+    background-color: #060807;
   }
 
   body {
-    @apply bg-background text-text-primary font-sans antialiased;
+    @apply text-text-primary font-sans antialiased;
+    background-color: transparent;
     font-feature-settings:
       'liga' 1,
       'calt' 1,
@@ -103,33 +105,46 @@
     @apply bg-gradient-to-br from-text-primary via-text-primary to-emerald-pale bg-clip-text text-transparent;
   }
 
+  /* Colourful gradient: emerald → teal → cyan */
+  .text-gradient-color {
+    background-image: linear-gradient(
+      110deg,
+      #5eead4 0%,
+      #34d399 35%,
+      #22d3ee 100%
+    );
+    @apply bg-clip-text text-transparent;
+  }
+
   .mono-label {
     @apply font-mono text-xs uppercase tracking-[0.2em] text-text-secondary;
   }
 }
 
-/* Subtle global scanline + vignette overlay — the "screen" texture */
+/* Subtle global scanline overlay — the "screen" texture.
+   No mix-blend-mode: it forces compositing of everything beneath on every
+   frame, which makes scrolling stutter on mobile. */
 body::before {
   content: '';
   position: fixed;
   inset: 0;
   z-index: 60;
   pointer-events: none;
-  background:
-    repeating-linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 0) 0px,
-      rgba(0, 0, 0, 0) 2px,
-      rgba(0, 0, 0, 0.5) 3px,
-      rgba(0, 0, 0, 0) 4px
-    ),
-    radial-gradient(
-      ellipse at center,
-      transparent 55%,
-      rgba(0, 0, 0, 0.45) 100%
-    );
-  opacity: 0.18;
-  mix-blend-mode: multiply;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0px,
+    rgba(0, 0, 0, 0) 2px,
+    rgba(0, 0, 0, 0.22) 3px,
+    rgba(0, 0, 0, 0) 4px
+  );
+  opacity: 0.5;
+}
+
+/* Hide scanlines on coarse-pointer (touch) devices for max scroll smoothness */
+@media (pointer: coarse) {
+  body::before {
+    display: none;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

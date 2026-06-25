@@ -54,28 +54,31 @@ export default function Hero() {
           '-=0.2'
         );
 
-      // Parallax + fade content on scroll
-      gsap.to('.hero-content', {
-        y: 120,
-        opacity: 0,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: root.current,
-          start: 'top top',
-          end: 'bottom top',
-          scrub: true,
-        },
-      });
-      // Rain drifts up slightly slower for depth
-      gsap.to('.hero-rain', {
-        y: 80,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: root.current,
-          start: 'top top',
-          end: 'bottom top',
-          scrub: true,
-        },
+      // Scrub parallax only on desktop — on touch it forces work on every
+      // scroll frame and makes mobile scrolling stutter.
+      const mm = gsap.matchMedia();
+      mm.add('(min-width: 769px)', () => {
+        gsap.to('.hero-content', {
+          y: 120,
+          opacity: 0,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: root.current,
+            start: 'top top',
+            end: 'bottom top',
+            scrub: true,
+          },
+        });
+        gsap.to('.hero-rain', {
+          y: 80,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: root.current,
+            start: 'top top',
+            end: 'bottom top',
+            scrub: true,
+          },
+        });
       });
     },
     { scope: root }
@@ -92,9 +95,15 @@ export default function Hero() {
         <MatrixRain opacity={0.45} />
       </div>
 
-      {/* Central emerald glow — ambient halo behind the headline */}
+      {/* Central glow — emerald → cyan halo behind the headline */}
       <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-        <div className="h-[420px] w-[420px] -translate-y-16 rounded-full bg-emerald-glow opacity-60 blur-3xl md:h-[620px] md:w-[620px]" />
+        <div
+          className="h-[440px] w-[440px] -translate-y-16 rounded-full opacity-70 blur-3xl md:h-[640px] md:w-[640px]"
+          style={{
+            background:
+              'radial-gradient(circle at 38% 40%, rgba(16,185,129,0.5), transparent 62%), radial-gradient(circle at 68% 62%, rgba(34,211,238,0.4), transparent 62%)',
+          }}
+        />
       </div>
 
       {/* Legibility vignette — darkens the centre so text reads cleanly */}

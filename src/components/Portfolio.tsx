@@ -18,6 +18,7 @@ const projects: Project[] = [
       'A premium wellness experience with two locations in Wicklow Town and Arklow. Built on Astro with GSAP animations, Sanity CMS, Buttondown newsletter integration, and Wundabook booking system.',
     tags: ['Web Design', 'Booking Integration', 'CMS', 'Animations'],
     url: 'https://theboatyardsauna.io',
+    image: '/images/boatyard-preview.svg',
   },
 ];
 
@@ -76,8 +77,19 @@ export default function Portfolio() {
   );
 
   return (
-    <section id="work" ref={root} className="relative py-28 md:py-36">
-      <div className="container-px">
+    <section
+      id="work"
+      ref={root}
+      className="relative overflow-hidden py-28 md:py-36"
+    >
+      <div
+        className="pointer-events-none absolute left-1/2 top-40 h-[460px] w-[700px] -translate-x-1/2 blur-3xl"
+        style={{
+          background:
+            'radial-gradient(50% 60% at 40% 50%, rgba(45,212,191,0.12), transparent 70%), radial-gradient(50% 60% at 70% 50%, rgba(139,92,246,0.10), transparent 70%)',
+        }}
+      />
+      <div className="container-px relative">
         <SectionHeading
           eyebrow="Portfolio"
           title="Our Work"
@@ -114,14 +126,22 @@ export default function Portfolio() {
                 </p>
 
                 <div className="mt-5 flex flex-wrap gap-2">
-                  {p.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="rounded-full border border-border bg-surface-light px-3 py-1 text-xs font-medium text-text-secondary"
-                    >
-                      {tag}
-                    </span>
-                  ))}
+                  {p.tags.map((tag, i) => {
+                    const tones = [
+                      'border-emerald/30 bg-emerald/10 text-emerald-glow',
+                      'border-teal/30 bg-teal/10 text-teal',
+                      'border-cyan/30 bg-cyan/10 text-cyan',
+                      'border-violet/30 bg-violet/10 text-violet',
+                    ];
+                    return (
+                      <span
+                        key={tag}
+                        className={`rounded-full border px-3 py-1 text-xs font-medium ${tones[i % tones.length]}`}
+                      >
+                        {tag}
+                      </span>
+                    );
+                  })}
                 </div>
 
                 <span className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-emerald">

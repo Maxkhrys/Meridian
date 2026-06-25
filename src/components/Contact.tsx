@@ -96,7 +96,13 @@ export default function Contact() {
   return (
     <section id="contact" ref={root} className="relative py-28 md:py-36">
       {/* glow */}
-      <div className="pointer-events-none absolute left-1/2 top-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-emerald-glow blur-3xl" />
+      <div
+        className="pointer-events-none absolute left-1/2 top-1/2 h-[560px] w-[820px] -translate-x-1/2 -translate-y-1/2 blur-3xl"
+        style={{
+          background:
+            'radial-gradient(40% 60% at 30% 50%, rgba(16,185,129,0.18), transparent 70%), radial-gradient(40% 60% at 70% 50%, rgba(34,211,238,0.16), transparent 70%)',
+        }}
+      />
 
       <div className="container-px relative">
         <SectionHeading
@@ -279,7 +285,13 @@ export default function Contact() {
 
           {/* Contact info */}
           <div className="contact-col relative">
-            <div className="pointer-events-none absolute -inset-4 rounded-3xl bg-emerald-glow blur-2xl" />
+            <div
+              className="pointer-events-none absolute -inset-5 rounded-[2rem] blur-2xl"
+              style={{
+                background:
+                  'radial-gradient(circle at 30% 25%, rgba(16,185,129,0.28), transparent 60%), radial-gradient(circle at 75% 80%, rgba(34,211,238,0.22), transparent 60%)',
+              }}
+            />
             <div className="relative flex h-full flex-col gap-6 rounded-2xl border border-emerald/20 bg-surface-light p-8">
               <h3 className="text-xl font-semibold text-text-primary">
                 Get in touch
