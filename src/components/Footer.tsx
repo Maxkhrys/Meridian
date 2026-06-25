@@ -1,4 +1,5 @@
 import { scrollToId } from '../hooks/useGSAP';
+import Logo from './Logo';
 
 const navLinks = [
   { label: 'Services', id: '#services' },
@@ -21,11 +22,8 @@ export default function Footer() {
         <div className="grid grid-cols-1 gap-10 md:grid-cols-3 md:items-start">
           {/* Left: wordmark + tagline */}
           <div>
-            <div className="flex items-center gap-2 text-lg font-bold tracking-tight text-text-primary">
-              Meridian
-              <span className="h-1.5 w-1.5 rounded-full bg-emerald" />
-            </div>
-            <p className="mt-3 max-w-xs text-sm text-text-secondary">
+            <Logo size={30} wordmarkClass="text-xl" />
+            <p className="mt-4 max-w-xs text-sm text-text-secondary">
               Digital excellence for Irish businesses.
             </p>
           </div>

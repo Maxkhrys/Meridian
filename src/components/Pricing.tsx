@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { useGSAP, gsap, scrollToId } from '../hooks/useGSAP';
+import { useGSAP, revealOnScroll, scrollToId } from '../hooks/useGSAP';
 import SectionHeading from './SectionHeading';
 
 const tiers = [
@@ -71,22 +71,17 @@ export default function Pricing() {
 
   useGSAP(
     () => {
-      gsap.from(['.sh-eyebrow', '.sh-title', '.sh-sub'], {
+      revealOnScroll(['.sh-eyebrow', '.sh-title', '.sh-sub'], {
+        trigger: root.current,
+        start: 'top 75%',
         y: 40,
-        opacity: 0,
-        duration: 0.9,
-        ease: 'power3.out',
         stagger: 0.1,
-        scrollTrigger: { trigger: root.current, start: 'top 75%' },
       });
 
-      gsap.from('.price-card', {
+      revealOnScroll('.price-card', {
+        trigger: '.price-grid',
         y: 50,
-        opacity: 0,
-        duration: 0.8,
-        ease: 'power3.out',
         stagger: 0.1,
-        scrollTrigger: { trigger: '.price-grid', start: 'top 80%' },
       });
     },
     { scope: root }

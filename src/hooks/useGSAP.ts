@@ -22,13 +22,46 @@ export function scrollToId(id: string) {
   }
 }
 
+interface RevealVars {
+  trigger: Element | string | null;
+  start?: string;
+  y?: number;
+  x?: number;
+  scale?: number;
+  stagger?: number;
+  duration?: number;
+}
+
 /**
- * Common "fade up on scroll" animation for section content.
- * Returns a config object spread into gsap.from().
+ * Scroll-triggered reveal. Uses fromTo() with an explicit end state — this is
+ * deliberate: a plain from() tween re-reads the element's current (already
+ * hidden) value as its destination on ScrollTrigger refresh and gets stuck at
+ * opacity 0. fromTo() pins the end state so reveals are bulletproof.
  */
-export const fadeUp = {
-  y: 40,
-  opacity: 0,
-  duration: 0.9,
-  ease: 'power3.out',
-};
+export function revealOnScroll(
+  targets: gsap.TweenTarget,
+  {
+    trigger,
+    start = 'top 80%',
+    y = 0,
+    x = 0,
+    scale = 1,
+    stagger = 0,
+    duration = 0.85,
+  }: RevealVars
+) {
+  return gsap.fromTo(
+    targets,
+    { opacity: 0, y, x, scale },
+    {
+      opacity: 1,
+      y: 0,
+      x: 0,
+      scale: 1,
+      duration,
+      ease: 'power3.out',
+      stagger,
+      scrollTrigger: { trigger: trigger ?? undefined, start },
+    }
+  );
+}

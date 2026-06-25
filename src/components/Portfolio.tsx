@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { useGSAP, gsap } from '../hooks/useGSAP';
+import { useGSAP, revealOnScroll } from '../hooks/useGSAP';
 import SectionHeading from './SectionHeading';
 
 interface Project {
@@ -58,22 +58,18 @@ export default function Portfolio() {
 
   useGSAP(
     () => {
-      gsap.from(['.sh-eyebrow', '.sh-title', '.sh-sub'], {
+      revealOnScroll(['.sh-eyebrow', '.sh-title', '.sh-sub'], {
+        trigger: root.current,
+        start: 'top 75%',
         y: 40,
-        opacity: 0,
-        duration: 0.9,
-        ease: 'power3.out',
         stagger: 0.1,
-        scrollTrigger: { trigger: root.current, start: 'top 75%' },
       });
 
-      gsap.from('.portfolio-card', {
+      revealOnScroll('.portfolio-card', {
+        trigger: '.portfolio-grid',
         scale: 0.95,
-        opacity: 0,
         duration: 0.9,
-        ease: 'power3.out',
         stagger: 0.12,
-        scrollTrigger: { trigger: '.portfolio-grid', start: 'top 80%' },
       });
     },
     { scope: root }

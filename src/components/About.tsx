@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { useGSAP, gsap } from '../hooks/useGSAP';
+import { useGSAP, gsap, revealOnScroll } from '../hooks/useGSAP';
 
 interface Stat {
   value: number;
@@ -20,21 +20,19 @@ export default function About() {
 
   useGSAP(
     () => {
-      gsap.from('.about-text > *', {
+      revealOnScroll('.about-text > *', {
+        trigger: root.current,
+        start: 'top 70%',
         y: 40,
-        opacity: 0,
-        duration: 0.9,
-        ease: 'power3.out',
         stagger: 0.12,
-        scrollTrigger: { trigger: root.current, start: 'top 70%' },
+        duration: 0.9,
       });
 
-      gsap.from('.stats-card', {
+      revealOnScroll('.stats-card', {
+        trigger: root.current,
+        start: 'top 70%',
         x: 40,
-        opacity: 0,
         duration: 1,
-        ease: 'power3.out',
-        scrollTrigger: { trigger: root.current, start: 'top 70%' },
       });
 
       // Count-up numbers

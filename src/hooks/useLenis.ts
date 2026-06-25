@@ -28,8 +28,20 @@ export function useLenis() {
     gsap.ticker.add(raf);
     gsap.ticker.lagSmoothing(0);
 
+    // ScrollTrigger start/end positions depend on final layout. Web fonts and
+    // the full-height hero shift the document, so refresh once everything has
+    // settled — otherwise child-triggered reveals never reach their start.
+    const refresh = () => ScrollTrigger.refresh();
+    if (document.fonts?.ready) {
+      document.fonts.ready.then(refresh);
+    }
+    window.addEventListener('load', refresh);
+    const settleTimer = window.setTimeout(refresh, 800);
+
     return () => {
       gsap.ticker.remove(raf);
+      window.removeEventListener('load', refresh);
+      window.clearTimeout(settleTimer);
       lenis.destroy();
       delete window.__lenis;
     };

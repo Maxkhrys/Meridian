@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { useGSAP, gsap } from '../hooks/useGSAP';
+import { useGSAP, revealOnScroll } from '../hooks/useGSAP';
 import SectionHeading from './SectionHeading';
 
 interface Testimonial {
@@ -22,22 +22,18 @@ export default function Testimonials() {
 
   useGSAP(
     () => {
-      gsap.from(['.sh-eyebrow', '.sh-title', '.sh-sub'], {
+      revealOnScroll(['.sh-eyebrow', '.sh-title', '.sh-sub'], {
+        trigger: root.current,
+        start: 'top 75%',
         y: 40,
-        opacity: 0,
-        duration: 0.9,
-        ease: 'power3.out',
         stagger: 0.1,
-        scrollTrigger: { trigger: root.current, start: 'top 75%' },
       });
 
-      gsap.from('.testimonial-card', {
+      revealOnScroll('.testimonial-card', {
+        trigger: '.testimonial-grid',
+        start: 'top 85%',
         y: 50,
-        opacity: 0,
-        duration: 0.8,
-        ease: 'power3.out',
         stagger: 0.12,
-        scrollTrigger: { trigger: '.testimonial-grid', start: 'top 85%' },
       });
     },
     { scope: root }

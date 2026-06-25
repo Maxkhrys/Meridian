@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { scrollToId } from '../hooks/useGSAP';
+import Logo from './Logo';
 
 const links = [
   { label: 'Services', id: '#services' },
@@ -36,10 +37,10 @@ export default function Navbar() {
       <nav className="container-px flex h-20 items-center justify-between">
         <button
           onClick={() => handleNav('#hero')}
-          className="flex items-center gap-2 text-lg font-bold tracking-tight text-text-primary"
+          className="transition-opacity hover:opacity-80"
+          aria-label="Meridian — back to top"
         >
-          Meridian
-          <span className="h-1.5 w-1.5 rounded-full bg-emerald shadow-glow-sm" />
+          <Logo size={34} wordmarkClass="text-2xl" />
         </button>
 
         {/* Desktop links */}

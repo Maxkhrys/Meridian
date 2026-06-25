@@ -12,6 +12,9 @@ export default {
         border: '#1a1a1a',
         emerald: {
           DEFAULT: '#10b981',
+          bright: '#34d399',
+          glow: '#5eead4',
+          pale: '#a7f3d0',
         },
         text: {
           primary: '#f5f5f5',
@@ -21,6 +24,7 @@ export default {
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
+        mono: ['JetBrains Mono', 'ui-monospace', 'monospace'],
       },
       fontSize: {
         hero: ['80px', { lineHeight: '1.05', letterSpacing: '-0.03em' }],
@@ -29,6 +33,28 @@ export default {
       boxShadow: {
         glow: '0 0 60px rgba(16, 185, 129, 0.15)',
         'glow-sm': '0 0 30px rgba(16, 185, 129, 0.12)',
+        'glow-lg': '0 0 100px rgba(16, 185, 129, 0.25)',
+      },
+      keyframes: {
+        pulseGlow: {
+          '0%, 100%': { opacity: '1', boxShadow: '0 0 0 0 rgba(16,185,129,0.5)' },
+          '50%': { opacity: '0.6', boxShadow: '0 0 0 6px rgba(16,185,129,0)' },
+        },
+        floatY: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-12px)' },
+        },
+        scrollCue: {
+          '0%': { transform: 'translateY(0)', opacity: '0' },
+          '40%': { opacity: '1' },
+          '80%': { transform: 'translateY(14px)', opacity: '0' },
+          '100%': { opacity: '0' },
+        },
+      },
+      animation: {
+        pulseGlow: 'pulseGlow 2.4s ease-in-out infinite',
+        floatY: 'floatY 7s ease-in-out infinite',
+        scrollCue: 'scrollCue 1.8s ease-in-out infinite',
       },
       backgroundImage: {
         'emerald-glow':

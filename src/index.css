@@ -49,18 +49,35 @@
 
   /* Primary emerald-filled button */
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 rounded-full border border-emerald bg-emerald/10 px-7 py-3.5 text-sm font-semibold text-emerald transition-all duration-300;
+    @apply relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full border border-emerald bg-emerald/10 px-7 py-3.5 text-sm font-semibold text-emerald transition-all duration-300;
   }
   .btn-primary:hover {
     @apply bg-emerald/20 shadow-glow-sm;
   }
+  /* Sheen sweep on hover */
+  .btn-primary::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      120deg,
+      transparent 20%,
+      rgba(94, 234, 212, 0.35) 50%,
+      transparent 80%
+    );
+    transform: translateX(-120%);
+    transition: transform 0.7s ease;
+  }
+  .btn-primary:hover::after {
+    transform: translateX(120%);
+  }
 
   /* Ghost / secondary button */
   .btn-ghost {
-    @apply inline-flex items-center justify-center gap-2 rounded-full border border-border bg-surface px-7 py-3.5 text-sm font-semibold text-text-primary transition-all duration-300;
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-border bg-surface/60 px-7 py-3.5 text-sm font-semibold text-text-primary backdrop-blur-sm transition-all duration-300;
   }
   .btn-ghost:hover {
-    @apply border-emerald/40 text-emerald;
+    @apply border-emerald/50 text-emerald shadow-glow-sm;
   }
 
   .card {
@@ -71,7 +88,54 @@
   }
 
   .eyebrow {
-    @apply text-sm font-medium uppercase tracking-[0.2em] text-emerald;
+    @apply font-mono text-xs font-medium uppercase tracking-[0.25em] text-emerald;
+  }
+
+  /* Emerald text glow for headlines */
+  .text-glow {
+    text-shadow:
+      0 0 30px rgba(16, 185, 129, 0.35),
+      0 0 60px rgba(16, 185, 129, 0.15);
+  }
+
+  /* Gradient headline: white → pale emerald */
+  .text-gradient {
+    @apply bg-gradient-to-br from-text-primary via-text-primary to-emerald-pale bg-clip-text text-transparent;
+  }
+
+  .mono-label {
+    @apply font-mono text-xs uppercase tracking-[0.2em] text-text-secondary;
+  }
+}
+
+/* Subtle global scanline + vignette overlay — the "screen" texture */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 0px,
+      rgba(0, 0, 0, 0) 2px,
+      rgba(0, 0, 0, 0.5) 3px,
+      rgba(0, 0, 0, 0) 4px
+    ),
+    radial-gradient(
+      ellipse at center,
+      transparent 55%,
+      rgba(0, 0, 0, 0.45) 100%
+    );
+  opacity: 0.18;
+  mix-blend-mode: multiply;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
   }
 }
 
