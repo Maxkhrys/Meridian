@@ -6,6 +6,7 @@ interface Testimonial {
   quote: string;
   name: string;
   business: string;
+  url?: string;
 }
 
 const testimonials: Testimonial[] = [
@@ -14,6 +15,7 @@ const testimonials: Testimonial[] = [
       'Maksim built us a site that genuinely represents what The Boat Yard Sauna is about. The process was smooth, he delivered fast, and the final product blew our expectations.',
     name: 'David Carroll',
     business: 'The Boat Yard Sauna',
+    url: 'https://theboatyardsauna.io',
   },
 ];
 
@@ -74,7 +76,31 @@ export default function Testimonials() {
               </blockquote>
               <figcaption className="mt-6 border-t border-border pt-5">
                 <div className="font-semibold text-text-primary">{t.name}</div>
-                <div className="text-sm text-text-secondary">{t.business}</div>
+                {t.url ? (
+                  <a
+                    href={t.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group/link inline-flex items-center gap-1.5 text-sm text-emerald-glow transition-colors hover:text-cyan"
+                  >
+                    {t.business}
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="h-3.5 w-3.5 transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5"
+                    >
+                      <path d="M7 17 17 7M7 7h10v10" />
+                    </svg>
+                  </a>
+                ) : (
+                  <div className="text-sm text-text-secondary">
+                    {t.business}
+                  </div>
+                )}
               </figcaption>
             </figure>
           ))}
