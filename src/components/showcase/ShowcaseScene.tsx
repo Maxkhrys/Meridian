@@ -214,10 +214,13 @@ function Spire({ items, progress, isMobile }: SceneProps) {
     [items, stepAngle, vStep, R]
   );
 
+  // Lift the focused panel up on mobile so it clears the bottom text zone.
+  const focusY = isMobile ? 1.0 : 0;
+
   useFrame(() => {
     const p = progress.current;
     const targetRot = -p * (n - 1) * stepAngle;
-    const targetPos = p * (n - 1) * vStep;
+    const targetPos = p * (n - 1) * vStep + focusY;
     state.current.rot += (targetRot - state.current.rot) * SMOOTH;
     state.current.pos += (targetPos - state.current.pos) * SMOOTH;
     if (group.current) {

@@ -119,33 +119,36 @@ export default function ShowcaseSpine() {
         </Canvas>
 
         {/* ---- Overlay UI ---- */}
-        {/* Heading */}
-        <div className="container-px pointer-events-none absolute inset-x-0 top-24 z-10 text-center md:top-28">
-          <p className="eyebrow mb-3">Selected Work</p>
-          <h2 className="text-gradient-color text-3xl font-bold tracking-tight sm:text-4xl md:text-[44px]">
-            Sites we&rsquo;ve brought to life.
-          </h2>
+        {/* Heading — sits in a darkened top zone so it never muddies the 3D */}
+        <div className="pointer-events-none absolute inset-x-0 top-0 z-10 bg-gradient-to-b from-background via-background/80 to-transparent pb-24 pt-20 text-center sm:pt-24">
+          <div className="container-px">
+            <p className="eyebrow mb-2">Selected Work</p>
+            <h2 className="text-gradient-color text-xl font-bold tracking-tight sm:text-3xl md:text-[40px]">
+              Sites we&rsquo;ve brought to life.
+            </h2>
+          </div>
         </div>
 
-        {/* Active project panel */}
-        <div className="container-px pointer-events-none absolute inset-x-0 bottom-10 z-10 md:bottom-16">
+        {/* Active project — sits in a darkened bottom zone, well clear of the
+            screens above it */}
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-background via-background/90 to-transparent pb-8 pt-28 sm:pb-12">
           <div
             key={active}
-            className="animate-enterUp mx-auto flex max-w-3xl flex-col items-center text-center"
+            className="container-px animate-enterUp mx-auto flex max-w-2xl flex-col items-center text-center"
           >
             <div className="mb-3 flex items-center gap-3">
-              <span className="font-mono text-sm text-emerald-glow">
+              <span className="font-mono text-xs text-emerald-glow sm:text-sm">
                 {String(active + 1).padStart(2, '0')}
               </span>
-              <span className="h-px w-8 bg-emerald/40" />
-              <span className="font-mono text-xs uppercase tracking-[0.2em] text-text-secondary">
+              <span className="h-px w-6 bg-emerald/40 sm:w-8" />
+              <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-text-secondary sm:text-xs">
                 {current.kind}
               </span>
             </div>
-            <h3 className="text-2xl font-bold text-text-primary sm:text-3xl md:text-4xl">
+            <h3 className="text-xl font-bold text-text-primary sm:text-3xl md:text-4xl">
               {current.name}
             </h3>
-            <p className="mt-3 max-w-xl text-sm leading-relaxed text-text-secondary sm:text-base">
+            <p className="mt-3 hidden max-w-xl text-sm leading-relaxed text-text-secondary sm:block sm:text-base">
               {current.blurb}
             </p>
             <div className="mt-4 flex flex-wrap items-center justify-center gap-2">
