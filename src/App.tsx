@@ -1,5 +1,6 @@
 import { lazy, Suspense } from 'react';
 import { useLenis } from './hooks/useLenis';
+import { useNoPinchZoom } from './hooks/useNoPinchZoom';
 import AuroraBackground from './components/AuroraBackground';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -32,6 +33,7 @@ function ShowcaseFallback() {
 
 function App() {
   useLenis();
+  useNoPinchZoom();
 
   return (
     <>

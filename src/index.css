@@ -11,6 +11,10 @@
     scroll-behavior: auto; /* Lenis handles smooth scrolling */
     -webkit-text-size-adjust: 100%;
     background-color: #0a0f0d;
+    /* Allow vertical panning only — blocks pinch-zoom and double-tap zoom. */
+    touch-action: pan-y;
+    /* Stop pull-to-refresh / rubber-band chaining from disrupting scroll. */
+    overscroll-behavior-y: none;
   }
 
   body {
@@ -22,6 +26,8 @@
       'ss01' 1,
       'tnum' 1;
     overflow-x: hidden;
+    touch-action: pan-y;
+    overscroll-behavior-y: none;
   }
 
   ::selection {
