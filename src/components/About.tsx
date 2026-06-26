@@ -66,7 +66,11 @@ export default function About() {
   );
 
   return (
-    <section id="about" ref={root} className="relative py-28 md:py-36">
+    <section
+      id="about"
+      ref={root}
+      className="relative py-20 sm:py-28 md:py-36"
+    >
       <div className="container-px">
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-20">
           {/* Left text */}
@@ -100,7 +104,7 @@ export default function About() {
               {stats.map((s) => (
                 <div
                   key={s.label}
-                  className="bg-surface-light p-8 transition-colors hover:bg-surface"
+                  className="bg-surface-light p-6 transition-colors hover:bg-surface sm:p-8"
                 >
                   {s.display ? (
                     <div className="text-2xl font-bold leading-tight text-text-primary">

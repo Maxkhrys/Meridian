@@ -45,7 +45,7 @@ export default function Testimonials() {
     <section
       id="testimonials"
       ref={root}
-      className="relative bg-surface/30 py-28 md:py-36"
+      className="relative bg-surface/30 py-20 sm:py-28 md:py-36"
     >
       <div className="container-px">
         <SectionHeading

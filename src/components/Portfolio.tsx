@@ -101,7 +101,7 @@ export default function Portfolio() {
     <section
       id="work"
       ref={root}
-      className="relative overflow-hidden py-28 md:py-36"
+      className="relative overflow-hidden py-20 sm:py-28 md:py-36"
     >
       <div
         className="pointer-events-none absolute left-1/2 top-40 h-[460px] w-[700px] -translate-x-1/2 blur-3xl"

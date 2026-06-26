@@ -91,7 +91,7 @@ export default function Pricing() {
     <section
       id="pricing"
       ref={root}
-      className="relative overflow-hidden bg-surface/30 py-28 md:py-36"
+      className="relative overflow-hidden bg-surface/30 py-20 sm:py-28 md:py-36"
     >
       <div
         className="pointer-events-none absolute -right-20 top-10 h-[420px] w-[420px] rounded-full blur-3xl"

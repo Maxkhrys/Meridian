@@ -10,7 +10,7 @@
   html {
     scroll-behavior: auto; /* Lenis handles smooth scrolling */
     -webkit-text-size-adjust: 100%;
-    background-color: #060807;
+    background-color: #0a0f0d;
   }
 
   body {
@@ -159,12 +159,12 @@ body::before {
   width: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: #080808;
+  background: #0a0f0d;
 }
 ::-webkit-scrollbar-thumb {
-  background: #1a1a1a;
+  background: #21302b;
   border-radius: 6px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #2a2a2a;
+  background: #2d4239;
 }

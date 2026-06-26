@@ -55,8 +55,26 @@ export default function Services() {
   );
 
   return (
-    <section id="services" ref={root} className="relative py-28 md:py-36">
-      <div className="container-px">
+    <section
+      id="services"
+      ref={root}
+      className="relative overflow-hidden py-20 sm:py-28 md:py-36"
+    >
+      <div
+        className="pointer-events-none absolute -left-24 top-24 h-[420px] w-[420px] rounded-full blur-3xl"
+        style={{
+          background:
+            'radial-gradient(circle, rgba(16,185,129,0.14), transparent 70%)',
+        }}
+      />
+      <div
+        className="pointer-events-none absolute -right-24 bottom-10 h-[380px] w-[380px] rounded-full blur-3xl"
+        style={{
+          background:
+            'radial-gradient(circle, rgba(34,211,238,0.12), transparent 70%)',
+        }}
+      />
+      <div className="container-px relative">
         <SectionHeading
           eyebrow="Services"
           title="What We Do"

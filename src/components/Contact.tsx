@@ -94,7 +94,11 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" ref={root} className="relative py-28 md:py-36">
+    <section
+      id="contact"
+      ref={root}
+      className="relative py-20 sm:py-28 md:py-36"
+    >
       {/* glow */}
       <div
         className="pointer-events-none absolute left-1/2 top-1/2 h-[560px] w-[820px] -translate-x-1/2 -translate-y-1/2 blur-3xl"

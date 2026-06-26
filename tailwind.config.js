@@ -4,12 +4,13 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: '#080808',
+        // Deep, slightly emerald-tinted darks — reads richer than pure black.
+        background: '#0a0f0d',
         surface: {
-          DEFAULT: '#0f0f0f',
-          light: '#141414',
+          DEFAULT: '#101714',
+          light: '#16201c',
         },
-        border: '#1a1a1a',
+        border: '#21302b',
         emerald: {
           DEFAULT: '#10b981',
           bright: '#34d399',
@@ -28,9 +29,9 @@ export default {
           DEFAULT: '#8b5cf6',
         },
         text: {
-          primary: '#f5f5f5',
-          secondary: '#888888',
-          muted: '#444444',
+          primary: '#f3f6f5',
+          secondary: '#9aa5a1',
+          muted: '#5c6b66',
         },
       },
       fontFamily: {
@@ -42,11 +43,16 @@ export default {
         section: ['48px', { lineHeight: '1.1', letterSpacing: '-0.02em' }],
       },
       boxShadow: {
-        glow: '0 0 60px rgba(16, 185, 129, 0.15)',
-        'glow-sm': '0 0 30px rgba(16, 185, 129, 0.12)',
-        'glow-lg': '0 0 100px rgba(16, 185, 129, 0.25)',
+        glow: '0 0 60px rgba(16, 185, 129, 0.18)',
+        'glow-sm': '0 0 30px rgba(16, 185, 129, 0.15)',
+        'glow-lg': '0 0 100px rgba(16, 185, 129, 0.28)',
+        'glow-cyan': '0 0 60px rgba(34, 211, 238, 0.18)',
       },
       keyframes: {
+        enterUp: {
+          '0%': { opacity: '0', transform: 'translateY(14px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
         pulseGlow: {
           '0%, 100%': { opacity: '1', boxShadow: '0 0 0 0 rgba(16,185,129,0.5)' },
           '50%': { opacity: '0.6', boxShadow: '0 0 0 6px rgba(16,185,129,0)' },
@@ -66,6 +72,7 @@ export default {
         pulseGlow: 'pulseGlow 2.4s ease-in-out infinite',
         floatY: 'floatY 7s ease-in-out infinite',
         scrollCue: 'scrollCue 1.8s ease-in-out infinite',
+        enterUp: 'enterUp 0.5s ease-out both',
       },
       backgroundImage: {
         'emerald-glow':

@@ -3,6 +3,7 @@ import { scrollToId } from '../hooks/useGSAP';
 import Logo from './Logo';
 
 const links = [
+  { label: 'Showcase', id: '#showcase' },
   { label: 'Services', id: '#services' },
   { label: 'Pricing', id: '#pricing' },
   { label: 'Work', id: '#work' },
@@ -44,7 +45,7 @@ export default function Navbar() {
         </button>
 
         {/* Desktop links */}
-        <div className="hidden items-center gap-8 md:flex">
+        <div className="hidden items-center gap-6 lg:flex xl:gap-8">
           {links.map((l) => (
             <button
               key={l.id}
@@ -61,7 +62,7 @@ export default function Navbar() {
 
         {/* Mobile toggle */}
         <button
-          className="flex h-10 w-10 flex-col items-center justify-center gap-1.5 md:hidden"
+          className="flex h-10 w-10 flex-col items-center justify-center gap-1.5 lg:hidden"
           onClick={() => setOpen((o) => !o)}
           aria-label="Toggle menu"
           aria-expanded={open}
@@ -86,7 +87,7 @@ export default function Navbar() {
 
       {/* Mobile drawer */}
       <div
-        className={`overflow-hidden border-t border-border bg-background/95 backdrop-blur-xl transition-[max-height] duration-500 md:hidden ${
+        className={`overflow-hidden border-t border-border bg-background/95 backdrop-blur-xl transition-[max-height] duration-500 lg:hidden ${
           open ? 'max-h-96' : 'max-h-0 border-t-transparent'
         }`}
       >
