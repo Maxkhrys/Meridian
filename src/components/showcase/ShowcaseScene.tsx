@@ -4,12 +4,118 @@ import { Edges, Environment, Lightformer, useTexture } from '@react-three/drei';
 import * as THREE from 'three';
 import type { ShowcaseProject } from './projects';
 
-const SMOOTH = 0.12; // lerp factor toward the scroll target
+const SMOOTH = 0.16; // lerp factor toward the scroll target
 
 interface SceneProps {
   items: ShowcaseProject[];
   progress: MutableRefObject<number>;
   isMobile: boolean;
+}
+
+/** One helical strand of the DNA, wound around the Y axis. */
+function strandGeometry(
+  height: number,
+  r: number,
+  k: number,
+  phase: number,
+  segs: number
+) {
+  const pts: THREE.Vector3[] = [];
+  for (let i = 0; i <= segs; i++) {
+    const y = -height / 2 + height * (i / segs);
+    const a = k * y + phase;
+    pts.push(new THREE.Vector3(r * Math.cos(a), y, r * Math.sin(a)));
+  }
+  return new THREE.TubeGeometry(
+    new THREE.CatmullRomCurve3(pts),
+    segs,
+    0.035,
+    6,
+    false
+  );
+}
+
+/**
+ * A subtle DNA double-helix running through the pillar — two two-toned strands
+ * with rungs, chaining the sites together as the spiral turns.
+ */
+function Dna({
+  height,
+  vStep,
+  isMobile,
+}: {
+  height: number;
+  vStep: number;
+  isMobile: boolean;
+}) {
+  const r = 1.05;
+  const k = (2 * Math.PI) / (2.4 * vStep); // gentle pitch (~2 turns on screen)
+  const segs = isMobile ? 120 : 220;
+
+  const strandA = useMemo(
+    () => strandGeometry(height, r, k, 0, segs),
+    [height, k, segs]
+  );
+  const strandB = useMemo(
+    () => strandGeometry(height, r, k, Math.PI, segs),
+    [height, k, segs]
+  );
+
+  const rungs = useMemo(() => {
+    const spacing = isMobile ? 1.3 : 0.95;
+    const count = Math.floor(height / spacing);
+    const up = new THREE.Vector3(0, 1, 0);
+    return Array.from({ length: count + 1 }, (_, i) => {
+      const y = -height / 2 + i * spacing;
+      const a = k * y;
+      const p0 = new THREE.Vector3(r * Math.cos(a), y, r * Math.sin(a));
+      const p1 = new THREE.Vector3(-r * Math.cos(a), y, -r * Math.sin(a));
+      const mid = p0.clone().add(p1).multiplyScalar(0.5);
+      const dir = p1.clone().sub(p0);
+      const len = dir.length();
+      const q = new THREE.Quaternion().setFromUnitVectors(
+        up,
+        dir.normalize()
+      );
+      return { mid, len, q, key: i };
+    });
+  }, [height, k, isMobile]);
+
+  return (
+    <group>
+      <mesh geometry={strandA}>
+        <meshStandardMaterial
+          color="#34d399"
+          emissive="#10b981"
+          emissiveIntensity={0.9}
+          metalness={0.5}
+          roughness={0.35}
+          toneMapped={false}
+        />
+      </mesh>
+      <mesh geometry={strandB}>
+        <meshStandardMaterial
+          color="#22d3ee"
+          emissive="#22d3ee"
+          emissiveIntensity={0.8}
+          metalness={0.5}
+          roughness={0.35}
+          toneMapped={false}
+        />
+      </mesh>
+      {rungs.map((d) => (
+        <mesh key={d.key} position={d.mid} quaternion={d.q}>
+          <cylinderGeometry args={[0.02, 0.02, d.len, 5]} />
+          <meshStandardMaterial
+            color="#2dd4bf"
+            emissive="#2dd4bf"
+            emissiveIntensity={0.45}
+            toneMapped={false}
+          />
+        </mesh>
+      ))}
+    </group>
+  );
 }
 
 /** The central hexagonal pillar the sites orbit around. */
@@ -123,6 +229,7 @@ function Spire({ items, progress, isMobile }: SceneProps) {
   return (
     <group ref={group}>
       <HexCore height={height} />
+      <Dna height={height} vStep={vStep} isMobile={isMobile} />
 
       {layout.map((l, i) => (
         <group key={items[i].name} position={l.pos} rotation={[0, l.a, 0]}>

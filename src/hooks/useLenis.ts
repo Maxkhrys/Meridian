@@ -13,9 +13,12 @@ gsap.registerPlugin(ScrollTrigger);
 export function useLenis() {
   useEffect(() => {
     const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      // Lerp-based smoothing feels tighter and less "floaty" than the long
+      // duration-based glide.
+      lerp: 0.1,
       smoothWheel: true,
+      wheelMultiplier: 1,
+      touchMultiplier: 1.5,
     });
 
     window.__lenis = lenis;
