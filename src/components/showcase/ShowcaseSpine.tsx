@@ -97,8 +97,8 @@ export default function ShowcaseSpine() {
           dpr={[1, isMobile ? 1.6 : 2]}
           gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }}
           camera={{
-            position: [0, 0, isMobile ? 8 : 7.6],
-            fov: isMobile ? 46 : 38,
+            position: [0, 0, isMobile ? 9.4 : 8.8],
+            fov: isMobile ? 50 : 40,
           }}
           frameloop={visible ? 'always' : 'never'}
         >
