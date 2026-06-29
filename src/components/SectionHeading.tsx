@@ -18,7 +18,7 @@ export default function SectionHeading({
   return (
     <div className={`mx-auto max-w-2xl text-center ${className}`}>
       {eyebrow && <p className="sh-eyebrow eyebrow mb-4">{eyebrow}</p>}
-      <h2 className="sh-title text-gradient-color text-3xl font-bold tracking-tight sm:text-4xl md:text-[48px] md:leading-tight">
+      <h2 className="sh-title display text-gradient-color text-3xl sm:text-4xl md:text-[52px] md:leading-[1.05]">
         {title}
       </h2>
       {subtitle && (

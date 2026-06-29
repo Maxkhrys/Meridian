@@ -64,7 +64,7 @@ export default function Services() {
         className="pointer-events-none absolute -left-24 top-24 h-[420px] w-[420px] rounded-full blur-3xl"
         style={{
           background:
-            'radial-gradient(circle, rgba(16,185,129,0.14), transparent 70%)',
+            'radial-gradient(circle, rgba(139,92,246,0.16), transparent 70%)',
         }}
       />
       <div

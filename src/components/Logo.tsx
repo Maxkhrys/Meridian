@@ -23,7 +23,7 @@ export default function Logo({
         viewBox="0 0 64 64"
         fill="none"
         aria-hidden="true"
-        className="shrink-0 drop-shadow-[0_0_10px_rgba(16,185,129,0.55)]"
+        className="shrink-0 drop-shadow-[0_0_10px_rgba(139,92,246,0.6)]"
       >
         <rect
           x="1.5"
@@ -31,7 +31,7 @@ export default function Logo({
           width="61"
           height="61"
           rx="15"
-          fill="#0b0f0d"
+          fill="#0b0b14"
           stroke="url(#mGrad)"
           strokeWidth="1.5"
         />
@@ -41,8 +41,9 @@ export default function Logo({
         />
         <defs>
           <linearGradient id="mGrad" x1="16" y1="18" x2="48" y2="46">
-            <stop stopColor="#5eead4" />
-            <stop offset="1" stopColor="#10b981" />
+            <stop stopColor="#a78bfa" />
+            <stop offset="0.5" stopColor="#22d3ee" />
+            <stop offset="1" stopColor="#ec4899" />
           </linearGradient>
         </defs>
       </svg>

@@ -97,7 +97,7 @@ export default function About() {
               className="pointer-events-none absolute -inset-8 rounded-[2rem] blur-3xl"
               style={{
                 background:
-                  'radial-gradient(circle at 30% 30%, rgba(16,185,129,0.22), transparent 60%), radial-gradient(circle at 80% 70%, rgba(34,211,238,0.18), transparent 60%)',
+                  'radial-gradient(circle at 30% 30%, rgba(139,92,246,0.24), transparent 60%), radial-gradient(circle at 80% 70%, rgba(34,211,238,0.18), transparent 60%)',
               }}
             />
             <div className="stats-card relative grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-border bg-border">

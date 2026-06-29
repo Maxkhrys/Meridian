@@ -43,12 +43,12 @@ export default function MatrixRain({
     const size = isMobile ? Math.round(fontSize * 1.5) : fontSize;
     const interval = 1000 / (isMobile ? 14 : 22);
 
-    // Occasional cyan / teal heads add colour to the rain.
-    const heads = ['#a7f3d0', '#67e8f9', '#5eead4', '#34d399'];
+    // Iridescent heads — violet / cyan / magenta lead the rain.
+    const heads = ['#ddd6fe', '#67e8f9', '#f9a8d4', '#a78bfa'];
     const trails = [
-      'rgba(16, 185, 129, 0.8)',
-      'rgba(45, 212, 191, 0.65)',
-      'rgba(34, 211, 238, 0.55)',
+      'rgba(139, 92, 246, 0.8)',
+      'rgba(34, 211, 238, 0.6)',
+      'rgba(236, 72, 153, 0.55)',
     ];
     const random = (arr: string) =>
       arr[Math.floor(Math.random() * arr.length)];
@@ -65,7 +65,7 @@ export default function MatrixRain({
       drops = Array.from({ length: columns }, () =>
         Math.floor((Math.random() * -height) / size)
       );
-      ctx.fillStyle = '#060807';
+      ctx.fillStyle = '#08080c';
       ctx.fillRect(0, 0, width, height);
     };
 
@@ -81,7 +81,7 @@ export default function MatrixRain({
       last = time;
 
       // Translucent fade creates the trailing tails.
-      ctx.fillStyle = 'rgba(6, 8, 7, 0.09)';
+      ctx.fillStyle = 'rgba(8, 8, 12, 0.09)';
       ctx.fillRect(0, 0, width, height);
 
       ctx.font = `${size}px "JetBrains Mono", monospace`;

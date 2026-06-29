@@ -95,13 +95,13 @@ export default function Hero() {
         <MatrixRain opacity={0.45} />
       </div>
 
-      {/* Central glow — emerald → cyan halo behind the headline */}
+      {/* Central glow — iridescent halo behind the headline */}
       <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
         <div
-          className="h-[440px] w-[440px] -translate-y-16 rounded-full opacity-70 blur-3xl md:h-[640px] md:w-[640px]"
+          className="h-[440px] w-[440px] -translate-y-16 rounded-full opacity-75 blur-3xl md:h-[640px] md:w-[640px]"
           style={{
             background:
-              'radial-gradient(circle at 38% 40%, rgba(16,185,129,0.5), transparent 62%), radial-gradient(circle at 68% 62%, rgba(34,211,238,0.4), transparent 62%)',
+              'radial-gradient(circle at 34% 38%, rgba(139,92,246,0.55), transparent 62%), radial-gradient(circle at 70% 60%, rgba(34,211,238,0.42), transparent 62%), radial-gradient(circle at 55% 80%, rgba(236,72,153,0.34), transparent 62%)',
           }}
         />
       </div>
@@ -120,7 +120,7 @@ export default function Hero() {
         className="pointer-events-none absolute inset-0 opacity-[0.05]"
         style={{
           backgroundImage:
-            'linear-gradient(#10b981 1px, transparent 1px), linear-gradient(90deg, #10b981 1px, transparent 1px)',
+            'linear-gradient(#8b5cf6 1px, transparent 1px), linear-gradient(90deg, #8b5cf6 1px, transparent 1px)',
           backgroundSize: '72px 72px',
           maskImage:
             'radial-gradient(circle at center, black 0%, transparent 70%)',
@@ -145,16 +145,16 @@ export default function Hero() {
           </span>
         </div>
 
-        <h1 className="hero-headline mx-auto max-w-5xl text-balance text-4xl font-bold leading-[1.04] tracking-tight sm:text-5xl md:text-6xl lg:text-[78px] xl:text-[88px]">
+        <h1 className="hero-headline display mx-auto max-w-5xl text-balance text-4xl leading-[1.02] sm:text-5xl md:text-6xl lg:text-[76px] xl:text-[86px]">
           <DecodeText
             text="The Last Website You'll"
-            className="text-gradient text-glow block"
+            className="text-iris text-glow block"
             startDelay={250}
             stagger={34}
           />
           <DecodeText
             text="Ever Need to Think About."
-            className="text-gradient text-glow block"
+            className="text-iris text-glow block"
             startDelay={250 + 24 * 34}
             stagger={34}
           />

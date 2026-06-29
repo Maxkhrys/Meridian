@@ -33,6 +33,21 @@ export default function ShowcaseSpine() {
   // Drive the scroll progress that the 3D scene reads each frame.
   useGSAP(
     () => {
+      const seg = 1 / (n - 1);
+      let snapTimer = 0;
+
+      // Custom snap (Lenis-friendly): once scrolling settles, glide to the
+      // nearest site so it locks dead-centre.
+      const maybeSnap = (p: number) => {
+        const nearest = Math.round(p / seg) * seg;
+        if (Math.abs(p - nearest) < 0.002) return;
+        const el = section.current;
+        if (!el || !window.__lenis) return;
+        const top = window.scrollY + el.getBoundingClientRect().top;
+        const dist = el.offsetHeight - window.innerHeight;
+        window.__lenis.scrollTo(top + nearest * dist, { duration: 0.5 });
+      };
+
       const st = ScrollTrigger.create({
         trigger: section.current,
         start: 'top top',
@@ -43,9 +58,14 @@ export default function ShowcaseSpine() {
           if (self.progress > 0.015 && !started) setStarted(true);
           const idx = Math.min(n - 1, Math.round(self.progress * (n - 1)));
           setActive((prev) => (prev !== idx ? idx : prev));
+          window.clearTimeout(snapTimer);
+          snapTimer = window.setTimeout(() => maybeSnap(self.progress), 160);
         },
       });
-      return () => st.kill();
+      return () => {
+        window.clearTimeout(snapTimer);
+        st.kill();
+      };
     },
     { scope: section, dependencies: [n] }
   );
@@ -87,7 +107,7 @@ export default function ShowcaseSpine() {
           className="pointer-events-none absolute inset-0"
           style={{
             background:
-              'radial-gradient(60% 50% at 50% 42%, rgba(16,185,129,0.18), transparent 70%), radial-gradient(50% 45% at 78% 75%, rgba(34,211,238,0.14), transparent 70%), radial-gradient(45% 40% at 18% 80%, rgba(139,92,246,0.10), transparent 70%)',
+              'radial-gradient(60% 50% at 50% 42%, rgba(139,92,246,0.20), transparent 70%), radial-gradient(50% 45% at 78% 75%, rgba(34,211,238,0.15), transparent 70%), radial-gradient(45% 40% at 18% 80%, rgba(236,72,153,0.14), transparent 70%)',
           }}
         />
 
@@ -123,7 +143,7 @@ export default function ShowcaseSpine() {
         <div className="pointer-events-none absolute inset-x-0 top-0 z-10 bg-gradient-to-b from-background via-background/80 to-transparent pb-24 pt-20 text-center sm:pt-24">
           <div className="container-px">
             <p className="eyebrow mb-2">Selected Work</p>
-            <h2 className="text-gradient-color text-xl font-bold tracking-tight sm:text-3xl md:text-[40px]">
+            <h2 className="display text-iris text-2xl sm:text-4xl md:text-[46px]">
               Sites we&rsquo;ve brought to life.
             </h2>
           </div>
@@ -145,7 +165,7 @@ export default function ShowcaseSpine() {
                 {current.kind}
               </span>
             </div>
-            <h3 className="text-xl font-bold text-text-primary sm:text-3xl md:text-4xl">
+            <h3 className="display text-2xl text-text-primary sm:text-4xl md:text-5xl">
               {current.name}
             </h3>
             <p className="mt-3 hidden max-w-xl text-sm leading-relaxed text-text-secondary sm:block sm:text-base">

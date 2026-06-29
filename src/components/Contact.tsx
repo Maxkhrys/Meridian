@@ -104,7 +104,7 @@ export default function Contact() {
         className="pointer-events-none absolute left-1/2 top-1/2 h-[560px] w-[820px] -translate-x-1/2 -translate-y-1/2 blur-3xl"
         style={{
           background:
-            'radial-gradient(40% 60% at 30% 50%, rgba(16,185,129,0.18), transparent 70%), radial-gradient(40% 60% at 70% 50%, rgba(34,211,238,0.16), transparent 70%)',
+            'radial-gradient(40% 60% at 30% 50%, rgba(139,92,246,0.20), transparent 70%), radial-gradient(40% 60% at 70% 50%, rgba(236,72,153,0.16), transparent 70%)',
         }}
       />
 
@@ -293,7 +293,7 @@ export default function Contact() {
               className="pointer-events-none absolute -inset-5 rounded-[2rem] blur-2xl"
               style={{
                 background:
-                  'radial-gradient(circle at 30% 25%, rgba(16,185,129,0.28), transparent 60%), radial-gradient(circle at 75% 80%, rgba(34,211,238,0.22), transparent 60%)',
+                  'radial-gradient(circle at 30% 25%, rgba(139,92,246,0.30), transparent 60%), radial-gradient(circle at 75% 80%, rgba(236,72,153,0.22), transparent 60%)',
               }}
             />
             <div className="relative flex h-full flex-col gap-6 rounded-2xl border border-emerald/20 bg-surface-light p-8">

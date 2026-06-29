@@ -10,7 +10,7 @@
   html {
     scroll-behavior: auto; /* Lenis handles smooth scrolling */
     -webkit-text-size-adjust: 100%;
-    background-color: #0a0f0d;
+    background-color: #08080c;
     /* Allow vertical panning only — blocks pinch-zoom and double-tap zoom. */
     touch-action: pan-y;
     /* Stop pull-to-refresh / rubber-band chaining from disrupting scroll. */
@@ -31,8 +31,8 @@
   }
 
   ::selection {
-    background-color: rgba(16, 185, 129, 0.25);
-    color: #f5f5f5;
+    background-color: rgba(139, 92, 246, 0.3);
+    color: #ffffff;
   }
 
   /* Lenis smooth scroll */
@@ -55,12 +55,18 @@
     @apply mx-auto w-full max-w-7xl px-6 md:px-10;
   }
 
-  /* Primary emerald-filled button */
+  /* Display serif — the new editorial headline voice */
+  .display {
+    @apply font-serif font-semibold tracking-tight;
+    font-optical-sizing: auto;
+  }
+
+  /* Primary accent button */
   .btn-primary {
     @apply relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full border border-emerald bg-emerald/10 px-7 py-3.5 text-sm font-semibold text-emerald transition-all duration-300;
   }
   .btn-primary:hover {
-    @apply bg-emerald/20 shadow-glow-sm;
+    @apply -translate-y-0.5 bg-emerald/20 shadow-glow;
   }
   /* Sheen sweep on hover */
   .btn-primary::after {
@@ -70,7 +76,7 @@
     background: linear-gradient(
       120deg,
       transparent 20%,
-      rgba(94, 234, 212, 0.35) 50%,
+      rgba(196, 181, 253, 0.4) 50%,
       transparent 80%
     );
     transform: translateX(-120%);
@@ -85,41 +91,54 @@
     @apply inline-flex items-center justify-center gap-2 rounded-full border border-border bg-surface/60 px-7 py-3.5 text-sm font-semibold text-text-primary backdrop-blur-sm transition-all duration-300;
   }
   .btn-ghost:hover {
-    @apply border-emerald/50 text-emerald shadow-glow-sm;
+    @apply -translate-y-0.5 border-emerald/50 text-emerald shadow-glow-sm;
   }
 
   .card {
     @apply rounded-2xl border border-border bg-surface transition-all duration-500;
   }
   .card-hover:hover {
-    @apply border-emerald/30 shadow-glow-sm;
+    @apply -translate-y-1 border-emerald/40 shadow-glow;
   }
 
   .eyebrow {
     @apply font-mono text-xs font-medium uppercase tracking-[0.25em] text-emerald;
   }
 
-  /* Emerald text glow for headlines */
+  /* Accent text glow for headlines */
   .text-glow {
     text-shadow:
-      0 0 30px rgba(16, 185, 129, 0.35),
-      0 0 60px rgba(16, 185, 129, 0.15);
+      0 0 30px rgba(139, 92, 246, 0.4),
+      0 0 70px rgba(34, 211, 238, 0.18);
   }
 
-  /* Gradient headline: white → pale emerald */
+  /* Gradient headline: white → pale violet */
   .text-gradient {
     @apply bg-gradient-to-br from-text-primary via-text-primary to-emerald-pale bg-clip-text text-transparent;
   }
 
-  /* Colourful gradient: emerald → teal → cyan */
+  /* Static iridescent gradient: violet → cyan → magenta */
   .text-gradient-color {
     background-image: linear-gradient(
       110deg,
-      #5eead4 0%,
-      #34d399 35%,
-      #22d3ee 100%
+      #a78bfa 0%,
+      #22d3ee 45%,
+      #ec4899 100%
     );
     @apply bg-clip-text text-transparent;
+  }
+
+  /* Animated iridescent gradient for big display text */
+  .text-iris {
+    background-image: linear-gradient(
+      110deg,
+      #8b5cf6 0%,
+      #22d3ee 35%,
+      #ec4899 68%,
+      #a78bfa 100%
+    );
+    background-size: 220% auto;
+    @apply animate-gradientShift bg-clip-text text-transparent;
   }
 
   .mono-label {
@@ -140,10 +159,10 @@ body::before {
     to bottom,
     rgba(0, 0, 0, 0) 0px,
     rgba(0, 0, 0, 0) 2px,
-    rgba(0, 0, 0, 0.22) 3px,
+    rgba(0, 0, 0, 0.2) 3px,
     rgba(0, 0, 0, 0) 4px
   );
-  opacity: 0.5;
+  opacity: 0.45;
 }
 
 /* Hide scanlines on coarse-pointer (touch) devices for max scroll smoothness */
@@ -165,12 +184,12 @@ body::before {
   width: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: #0a0f0d;
+  background: #08080c;
 }
 ::-webkit-scrollbar-thumb {
-  background: #21302b;
+  background: #242436;
   border-radius: 6px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #2d4239;
+  background: #34344a;
 }

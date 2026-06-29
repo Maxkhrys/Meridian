@@ -107,7 +107,7 @@ export default function Portfolio() {
         className="pointer-events-none absolute left-1/2 top-40 h-[460px] w-[700px] -translate-x-1/2 blur-3xl"
         style={{
           background:
-            'radial-gradient(50% 60% at 40% 50%, rgba(45,212,191,0.12), transparent 70%), radial-gradient(50% 60% at 70% 50%, rgba(139,92,246,0.10), transparent 70%)',
+            'radial-gradient(50% 60% at 40% 50%, rgba(236,72,153,0.13), transparent 70%), radial-gradient(50% 60% at 70% 50%, rgba(139,92,246,0.12), transparent 70%)',
         }}
       />
       <div className="container-px relative">

@@ -1,6 +1,7 @@
 import { lazy, Suspense } from 'react';
 import { useLenis } from './hooks/useLenis';
 import { useNoPinchZoom } from './hooks/useNoPinchZoom';
+import Loader from './components/Loader';
 import AuroraBackground from './components/AuroraBackground';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -37,6 +38,7 @@ function App() {
 
   return (
     <>
+      <Loader />
       <AuroraBackground />
       <Navbar />
       <main>

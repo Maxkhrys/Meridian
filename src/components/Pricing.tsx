@@ -104,7 +104,7 @@ export default function Pricing() {
         className="pointer-events-none absolute -left-20 bottom-0 h-[380px] w-[380px] rounded-full blur-3xl"
         style={{
           background:
-            'radial-gradient(circle, rgba(16,185,129,0.14), transparent 70%)',
+            'radial-gradient(circle, rgba(236,72,153,0.14), transparent 70%)',
         }}
       />
       <div className="container-px relative">
