@@ -128,10 +128,10 @@ export default function ShowcaseSpine() {
               <EffectComposer>
                 <Bloom
                   mipmapBlur
-                  intensity={0.85}
-                  luminanceThreshold={0.55}
-                  luminanceSmoothing={0.32}
-                  radius={0.72}
+                  intensity={0.7}
+                  luminanceThreshold={0.62}
+                  luminanceSmoothing={0.3}
+                  radius={0.7}
                 />
               </EffectComposer>
             )}

@@ -164,7 +164,7 @@ export default function Hero() {
           className="hero-sub mx-auto mt-8 max-w-2xl text-lg leading-relaxed text-text-primary/75"
           style={{ textShadow: '0 2px 24px rgba(8,8,8,0.95)' }}
         >
-          Meridian builds premium websites and digital systems for Irish
+          Aurelo builds premium, hand-coded websites and digital systems for Irish
           businesses — so you can focus on running yours.
         </p>
 

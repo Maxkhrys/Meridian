@@ -1,8 +1,8 @@
-# Meridian
+# Aurelo
 
-Premium business website for **Meridian** — a web design & digital services
-company based in Wicklow, Ireland. Built as a single-page, dark-themed,
-animation-rich showcase and lead-generation site.
+Premium business website for **Aurelo** — a web design & development studio
+based in Wicklow, Ireland. Built as a single-page, dark-themed, animation-rich
+showcase and lead-generation site with a 3D liquid-glass work showcase.
 
 ## Tech Stack
 

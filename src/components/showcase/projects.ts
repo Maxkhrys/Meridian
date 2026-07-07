@@ -3,12 +3,10 @@ export interface ShowcaseProject {
   name: string;
   /** Short category line. */
   kind: string;
-  /** Texture shown on the block's screen (served from /public). */
+  /** Texture / screenshot shown for the site (served from /public). */
   image: string;
-  /** Live URL — only present for real, shipped work. */
+  /** Live URL, when available. */
   url?: string;
-  /** Whether this is a real client project or a design concept. */
-  concept?: boolean;
   /** Capability tags. */
   tags: string[];
   /** One-line blurb shown in the overlay. */
@@ -16,64 +14,65 @@ export interface ShowcaseProject {
 }
 
 /**
- * The blocks strung along the chain. Block 0 is real, shipped work; the rest
- * are clearly-labelled design concepts so the chain reads full and varied
- * without misrepresenting client work. Swap concepts for real builds as they
- * ship.
+ * Real, shipped client work. These are strung along the 3D chain in the
+ * showcase and shown in the portfolio grid.
  */
 export const showcaseProjects: ShowcaseProject[] = [
   {
     name: 'The Boat Yard Sauna',
     kind: 'Wellness · Wicklow & Arklow',
-    image: '/images/boatyard.png',
+    image: '/images/boatyardsauna.png',
     url: 'https://theboatyardsauna.io',
     tags: ['Web Design', 'Booking', 'CMS', 'Animation'],
     blurb:
-      'A premium wellness brand with two coastal locations — Astro, Sanity CMS and a live booking system.',
+      'A premium wellness brand with two coastal locations — custom build, Sanity CMS and a live booking system.',
   },
   {
-    name: 'Lumière',
-    kind: 'Restaurant · Concept',
-    image: '/images/concepts/restaurant.svg',
-    concept: true,
-    tags: ['Web Design', 'Reservations', 'Menu CMS'],
+    name: 'Archive63',
+    kind: 'Streetwear · Kilcoole',
+    image: '/images/archive63.png',
+    tags: ['E-commerce', 'Storefront', 'Brand'],
     blurb:
-      'A fine-dining concept built around the reservation flow and a nightly-changing seasonal menu.',
+      'Curated designer and vintage streetwear — a bold storefront built around drops and a full online shop.',
   },
   {
-    name: 'Fade & Co',
-    kind: 'Barbershop · Concept',
-    image: '/images/concepts/salon.svg',
-    concept: true,
-    tags: ['Web Design', 'Online Booking', 'Brand'],
+    name: 'Pinky',
+    kind: 'Fashion Boutique · Dublin',
+    image: '/images/pinkystore.png',
+    tags: ['E-commerce', 'Web Design', 'Brand'],
     blurb:
-      'A barbershop concept where booking a chair takes under thirty seconds, on any device.',
+      'A statement fashion label with attitude — editorial hero, bold type and a shoppable collection.',
   },
   {
-    name: 'Pulse',
-    kind: 'Fitness Studio · Concept',
-    image: '/images/concepts/fitness.svg',
-    concept: true,
-    tags: ['Web Design', 'Class Schedule', 'Memberships'],
+    name: 'Sergio Furlan',
+    kind: 'Tattoo Artist · Dublin',
+    image: '/images/sergiotattoo.png',
+    tags: ['Web Design', 'Gallery', 'Booking'],
     blurb:
-      'A strength-and-conditioning studio concept with class schedules and membership plans front and centre.',
+      'A tattoo artist portfolio — black & grey and colour realism, with gallery, healed work and consultation booking.',
   },
   {
-    name: 'Marigold',
-    kind: 'Café & Bakery · Concept',
-    image: '/images/concepts/cafe.svg',
-    concept: true,
-    tags: ['Web Design', 'Menu', 'Local SEO'],
+    name: 'Belle Kilkenny',
+    kind: 'Boutique Footwear · Kilkenny',
+    image: '/images/bellekilkenny.png',
+    tags: ['E-commerce', 'Storefront', 'Editorial'],
     blurb:
-      'A neighbourhood café concept focused on menu, opening hours and getting found locally.',
+      'A boutique footwear shop — warm, editorial design with a handpicked heels, boots and flats collection.',
   },
   {
-    name: 'Atelier',
-    kind: 'Boutique Retail · Concept',
-    image: '/images/concepts/retail.svg',
-    concept: true,
-    tags: ['Web Design', 'Storefront', 'Editorial'],
+    name: 'Bluntforce Ink',
+    kind: 'Tattoo Studio · Dublin 8',
+    image: '/images/bluntforceink.png',
+    tags: ['Web Design', 'Gallery', 'Booking'],
     blurb:
-      'A design-led concept store with a clean storefront and an editorial journal to drive discovery.',
+      'Gothic fine-line black & grey tattooing — a dark, cinematic portfolio for Keith Burke in Dublin 8.',
+  },
+  {
+    name: 'Exotic Cuts',
+    kind: 'Barber Studio · Greystones',
+    image: '/images/exoticcuts.png',
+    tags: ['Web Design', 'Booking', 'Brand'],
+    blurb:
+      'Precision fades and premium grooming in Greystones — sleek barber studio site with online booking.',
   },
 ];

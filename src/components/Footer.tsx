@@ -56,7 +56,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-12 flex flex-col gap-2 border-t border-border pt-6 text-xs text-text-muted sm:flex-row sm:items-center sm:justify-between">
-          <span>© 2026 Meridian. All rights reserved.</span>
+          <span>© 2026 Aurelo. All rights reserved.</span>
           <span>Registered Business Name, Ireland.</span>
         </div>
       </div>

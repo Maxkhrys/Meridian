@@ -76,13 +76,14 @@ export default function About() {
           {/* Left text */}
           <div className="about-text">
             <p className="eyebrow mb-4">About</p>
-            <h2 className="text-gradient-color text-3xl font-bold tracking-tight sm:text-4xl md:text-[48px] md:leading-tight">
+            <h2 className="display text-gradient-color text-3xl sm:text-4xl md:text-[52px] md:leading-[1.05]">
               Built Different.
             </h2>
             <p className="mt-6 text-lg leading-relaxed text-text-secondary">
-              Meridian was built on a simple idea: small businesses deserve the
+              Aurelo was built on a simple idea: small businesses deserve the
               same quality websites as big brands — without the agency price tag
-              or the 8-week wait.
+              or the 8-week wait. Every site is designed and hand-coded from
+              scratch, never a template.
             </p>
             <p className="mt-5 text-lg leading-relaxed text-text-secondary">
               We're a lean, focused team based in Wicklow, Ireland. We move fast,

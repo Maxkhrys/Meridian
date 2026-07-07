@@ -279,7 +279,7 @@ export default function ShowcaseScene({ items, progress, isMobile }: SceneProps)
       <ambientLight intensity={0.55} />
       <pointLight position={[6, 5, 6]} intensity={70} decay={2} color="#8b5cf6" />
       <pointLight position={[-7, -3, 4]} intensity={55} decay={2} color="#22d3ee" />
-      <pointLight position={[0, 1, 5]} intensity={40} decay={2} color="#ec4899" />
+      <pointLight position={[0, 1, 5]} intensity={20} decay={2} color="#ec4899" />
 
       {/* Iridescent environment for reflections + transmission tint */}
       <Environment resolution={isMobile ? 128 : 256} frames={1}>

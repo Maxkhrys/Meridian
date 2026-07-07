@@ -39,7 +39,7 @@ export default function Navbar() {
         <button
           onClick={() => handleNav('#hero')}
           className="transition-opacity hover:opacity-80"
-          aria-label="Meridian — back to top"
+          aria-label="Aurelo — back to top"
         >
           <Logo size={34} wordmarkClass="text-2xl" />
         </button>
