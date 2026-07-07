@@ -150,25 +150,14 @@ function GlassPanel({
   h: number;
   isMobile: boolean;
 }) {
+  const depth = isMobile ? 0.16 : 0.5;
+
   return (
     <group>
-      {/* The site screen — emissive so it glows through the glass */}
-      <mesh position={[0, 0, isMobile ? 0.02 : -0.08]}>
-        <planeGeometry args={[w * 0.9, h * 0.82]} />
-        <meshStandardMaterial
-          map={texture}
-          emissiveMap={texture}
-          emissive={'#ffffff'}
-          emissiveIntensity={0.7}
-          toneMapped={false}
-          roughness={0.5}
-          metalness={0}
-        />
-      </mesh>
-
-      {/* Glass body */}
+      {/* Glass body — sits BEHIND the screen so it never distorts the site
+          itself; it only frames it with a refractive, glowing bezel. */}
       <mesh>
-        <boxGeometry args={[w, h, isMobile ? 0.16 : 0.5]} />
+        <boxGeometry args={[w, h, depth]} />
         {isMobile ? (
           <meshStandardMaterial
             color="#0b0b16"
@@ -186,17 +175,24 @@ function GlassPanel({
             thickness={0.7}
             roughness={0.15}
             ior={1.35}
-            chromaticAberration={0.07}
-            anisotropicBlur={0.3}
-            distortion={0.12}
-            distortionScale={0.25}
-            temporalDistortion={0.06}
+            chromaticAberration={0.03}
+            anisotropicBlur={0.1}
+            distortion={0}
+            distortionScale={0}
+            temporalDistortion={0}
             attenuationColor="#c4b5fd"
             attenuationDistance={2.5}
             color="#ffffff"
           />
         )}
         <Edges threshold={1} color="#22d3ee" />
+      </mesh>
+
+      {/* The site screen — crisp and fully opaque, in front of the glass so
+          nothing ever refracts or warps the actual screenshot. */}
+      <mesh position={[0, 0, depth / 2 + 0.015]}>
+        <planeGeometry args={[w * 0.9, h * 0.82]} />
+        <meshBasicMaterial map={texture} toneMapped={false} />
       </mesh>
     </group>
   );
